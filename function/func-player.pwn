@@ -30,18 +30,20 @@ stock AddValueToDialog (playerid, index, label[], firstData, secondData = INVALI
     dialogVar[playerid][dialogStaterId] ++;
 }
 
-stock ShowDialogWithPage (playerid, dialogid, caption[], button1[], button2[], dataAmount = INVALID_ID, bool:showPage = false, style = DIALOG_STYLE_TABLIST) {
+stock ShowDialogWithPage (playerid, dialogid, caption[], button1[], button2[], dataAmount = INVALID_ID, bool:showPage = false, style = DIALOG_STYLE_TABLIST, bool:showNextPrev = true) {
     if (dataAmount != INVALID_ID) {
         dialogVar[playerid][dialogMaxPage] = dataAmount / MAX_DATA_PER_DIALOG;
     }
 
-    if (IsThisDialogPageLastPage(playerid)) {
-        strcat(dialogVar[playerid][dialogLabel], "<~ Previous Page\n", 1280);
-    } else if(IsThisDialogPageFirstPage(playerid)) {
-        strcat(dialogVar[playerid][dialogLabel], "~> Next Page\n", 1280);
-    } else {
-        strcat(dialogVar[playerid][dialogLabel], "~> Next Page\n", 1280);
-        strcat(dialogVar[playerid][dialogLabel], "<~ Previous Page\n", 1280);
+    if (showNextPrev) {
+        if (IsThisDialogPageLastPage(playerid)) {
+            strcat(dialogVar[playerid][dialogLabel], "<~ Previous Page\n", 1280);
+        } else if(IsThisDialogPageFirstPage(playerid)) {
+            strcat(dialogVar[playerid][dialogLabel], "~> Next Page\n", 1280);
+        } else {
+            strcat(dialogVar[playerid][dialogLabel], "~> Next Page\n", 1280);
+            strcat(dialogVar[playerid][dialogLabel], "<~ Previous Page\n", 1280);
+        }
     }
 
     if (showPage) {
