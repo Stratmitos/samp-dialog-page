@@ -22,15 +22,19 @@ stock InitiateDialogDataIndex (playerid, fromPage = INVALID_ID) {
     return dialogVar[playerid][dialogStaterId];
 }
 
+stock AddValueToDialogLabel (playerid, label[]) {
+    strcat(dialogVar[playerid][dialogLabel], label, 1280);
+}
+
 stock AddValueToDialog (playerid, index, label[], firstData, secondData = INVALID_ID) {
     dialogData[playerid][FIRST_DATA][index] = firstData;
     dialogData[playerid][SECOND_DATA][index] = secondData;
-    strcat(dialogVar[playerid][dialogLabel], label, 1280);
+    AddValueToDialogLabel(playerid, label);
 
     dialogVar[playerid][dialogStaterId] ++;
 }
 
-stock ShowDialogWithPage (playerid, dialogid, caption[], button1[], button2[], dataAmount = INVALID_ID, bool:showPage = false, style = DIALOG_STYLE_TABLIST, bool:showNextPrev = true) {
+stock ShowDialogWithPage (playerid, dialogid, caption[], button1[], button2[], dataAmount = INVALID_ID, bool:showPage = false, bool:showNextPrev = true, style = DIALOG_STYLE_TABLIST) {
     if (dataAmount != INVALID_ID) {
         dialogVar[playerid][dialogMaxPage] = dataAmount / MAX_DATA_PER_DIALOG;
     }
