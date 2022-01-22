@@ -75,6 +75,18 @@ stock GetSecondValueDialog (playerid, itemList) {
     return dialogData[playerid][SECOND_DATA][itemList];
 }
 
+stock GetCurrentPageOfDialog (playerid) {
+    return dialogVar[playerid][dialogCurrentPage];
+}
+
+stock SetSelectedValueDialog (playerid, itemList) {
+    dialogVar[playerid][dialogSelected] = itemList;
+}
+
+stock GetSelectedValueDialog (playerid) {
+    return dialogVar[playerid][dialogSelected];
+}
+
 stock InitiateDialogNextPage (playerid) {
     if (IsThisDialogPageLastPage(playerid)) {
         dialogVar[playerid][dialogCurrentPage] --;
@@ -96,7 +108,7 @@ stock IsThisDialogPageFirstPage (playerid) {
 }
 
 stock IsThisDialogPageLastPage (playerid) {
-    if (dialogVar[playerid][dialogMaxPage] == dialogVar[playerid][dialogCurrentPage] + 1) {
+    if (dialogVar[playerid][dialogMaxPage] == dialogVar[playerid][dialogCurrentPage]) {
         return 1;
     }
 
