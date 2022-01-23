@@ -2,6 +2,7 @@ stock ResetDialogData (playerid) {
     dialogVar[playerid][dialogStaterId] = 0;
     dialogVar[playerid][dialogCurrentPage] = 0;
     dialogVar[playerid][dialogMaxPage] = INVALID_ID;
+    dialogVar[playerid][dialogSelected] = INVALID_ID;
     format(dialogVar[playerid][dialogLabel], 1280, "");
 
     for (new j = 0; j < MAX_DATA_PER_DIALOG; j++) {
